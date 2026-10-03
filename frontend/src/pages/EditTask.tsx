@@ -31,7 +31,7 @@ export const EditTask: React.FC = () => {
     try {
       const [tRes, uRes, cRes] = await Promise.all([
         taskApi.getTask(taskId),
-        userApi.getUsers({ limit: 100 }),
+        userApi.getAssignableUsers({ limit: 100 }),
         categoryApi.getCategories(),
       ]);
       setTask(tRes);

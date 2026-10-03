@@ -38,7 +38,7 @@ export const Analytics: React.FC = () => {
     const loadMetadata = async () => {
       try {
         const [uRes, cRes, featRes] = await Promise.all([
-          userApi.getUsers({ limit: 100 }),
+          userApi.getAssignableUsers({ limit: 100 }),
           categoryApi.getCategories(),
           mlApi.getFeatureImportance().catch(() => null),
         ]);

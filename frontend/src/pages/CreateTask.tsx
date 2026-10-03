@@ -24,7 +24,7 @@ export const CreateTask: React.FC = () => {
     const loadMetadata = async () => {
       try {
         const [uRes, cRes] = await Promise.all([
-          userApi.getUsers({ limit: 100 }),
+          userApi.getAssignableUsers({ limit: 100 }),
           categoryApi.getCategories(),
         ]);
         setUsers(uRes.items);

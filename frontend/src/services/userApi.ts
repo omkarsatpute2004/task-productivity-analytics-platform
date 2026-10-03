@@ -22,6 +22,11 @@ export const userApi = {
     return response.data;
   },
 
+  getAssignableUsers: async (params?: UserQueryParams): Promise<PaginatedResponse<User>> => {
+    const response = await api.get<PaginatedResponse<User>>('/users/assignable', { params });
+    return response.data;
+  },
+
   getUser: async (id: number): Promise<User> => {
     const response = await api.get<User>(`/users/${id}`);
     return response.data;

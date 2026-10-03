@@ -37,6 +37,16 @@ def test_user_cannot_list_users(client, db):
     assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
+def test_user_can_get_assignable_users(client, db):
+    user, token = create_test_user(db, "normal.assignable@example.com", role=UserRole.USER)
+    headers = {"Authorization": f"Bearer {token}"}
+
+    response = client.get("/api/users/assignable", headers=headers)
+    assert response.status_code == status.HTTP_200_OK
+    data = response.json()
+    assert "items" in data
+
+
 def test_user_can_get_own_profile(client, db):
     user, token = create_test_user(db, "own.profile@example.com", role=UserRole.USER)
     headers = {"Authorization": f"Bearer {token}"}
